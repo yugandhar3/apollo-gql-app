@@ -1,12 +1,11 @@
 const { gql } = require("apollo-server-express");
 
-const typeDefs = gql`
+const postTypeDefs = gql`
 type post {
     id:ID,
     title:String,
     descriptions:String
 }
-
 type Query {
     hello:String,
 
@@ -25,4 +24,4 @@ type Mutation {
 
 }
 `
-module.exports = typeDefs
+module.exports = postTypeDefs

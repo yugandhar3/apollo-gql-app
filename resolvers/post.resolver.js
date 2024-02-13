@@ -1,6 +1,6 @@
-const Post = require("./models/Post.model");
+const Post = require("../models/Post.model");
 
-const resolvers = {
+const postResolvers = {
     Query: {
         hello: () => {
             return "hello world"
@@ -19,6 +19,7 @@ const resolvers = {
             await post.save()
             return post
         },
+
         deletePost: async (parent, { id }, context, info) => {
             return await Post.findByIdAndDelete(id)
         },
@@ -33,4 +34,4 @@ const resolvers = {
     }
 }
 
-module.exports = resolvers
+module.exports = postResolvers

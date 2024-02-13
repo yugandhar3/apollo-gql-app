@@ -1,16 +1,23 @@
 const express = require("express");
 const { ApolloServer } = require("apollo-server-express");
-const typeDefs = require("./typeDefs");
-const resolvers = require("./resolvers");
+const postTypeDefs = require("./typeDefs/post.typeDefs");
+const postResolvers = require("./resolvers/post.resolver");
+const userTypeDefs = require("./typeDefs/user.typeDefs");
+const userResolvers = require("./resolvers/user.resolver");
+
 const mongoose = require("mongoose");
 
 
 async function startServer() {
     const app = express()
+
+    const typeDefs = [postTypeDefs, userTypeDefs];
+    const resolvers = [postResolvers, userResolvers];
+
     const apolloServer = new ApolloServer({
         typeDefs,
-        resolvers,
-    })
+        resolvers
+    });
     await apolloServer.start()
     apolloServer.applyMiddleware({ app: app })
     app.use((req, res) => {
